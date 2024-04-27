@@ -1,51 +1,69 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import useAuthProvider from "../AuthProvider/useAuthProvider";
+import UserMenu from "../components/UserMenu";
 
 const Nav = () => {
+  const { users, isProfileClicked, setProfileClicked } = useAuthProvider();
+
   const navLinks = (
     <>
       <NavLink
         className={({ isActive }) =>
           isActive
             ? "px-3 py-2 border font-sans text-[18px] text-black font-medium border-blue-300 rounded-md"
-            : "p-3 text-[18px] hover:rounded-md hover:bg-gray-200 font-sans text-black font-medium"
+            : "p-3 text-[18px] hover:rounded-md  font-sans text-black font-medium"
         }
         to="/destination"
       >
         <li>Destination</li>
       </NavLink>
-      <NavLink className={({ isActive }) =>
+      <NavLink
+        className={({ isActive }) =>
           isActive
             ? "px-3 py-2 border font-sans text-[18px] text-black font-medium border-blue-300 rounded-md"
-            : "p-3 text-[18px] hover:rounded-md font-sans hover:bg-gray-200 text-black font-medium"
-        } to='/placestogo'>
+            : "p-3 text-[18px] hover:rounded-md font-sans  text-black font-medium"
+        }
+        to="/placestogo"
+      >
         <li>Places To Go</li>
       </NavLink>
-      <NavLink className={({ isActive }) =>
+      <NavLink
+        className={({ isActive }) =>
           isActive
             ? "px-3 py-2 border font-sans text-[18px] text-black font-medium border-blue-300 rounded-md bg-gray-100"
-            : "p-3 text-[18px] hover:rounded-md font-sans hover:bg-gray-200 text-black font-medium"
-        } to='/thingstogo'>
+            : "p-3 text-[18px] hover:rounded-md font-sans  text-black font-medium"
+        }
+        to="/thingstogo"
+      >
         <li>Things To Go</li>
       </NavLink>
-      <NavLink className={({ isActive }) =>
+      <NavLink
+        className={({ isActive }) =>
           isActive
             ? "px-3 font-medium py-2 border font-sans text-[18px]   text-black  border-blue-300 rounded-md bg-gray-100"
-            : "p-3  font-medium hover:rounded-md hover:bg-gray-200 text-[18px]  font-sans text-black "
-        } to='/planeyourtrip'>
+            : "p-3  font-medium hover:rounded-md  text-[18px]  font-sans text-black "
+        }
+        to="/planeyourtrip"
+      >
         <li>Plane Your Trip</li>
       </NavLink>
-      <NavLink className={({ isActive }) =>
+      <NavLink
+        className={({ isActive }) =>
           isActive
             ? "px-3 font-medium py-2 border text-[18px] font-sans text-black border-blue-300 rounded-md"
-            : "p-3  font-medium hover:rounded-md hover:bg-gray-200 text-[18px] text-black font-sans "
-        } to='/findyourdream'>
+            : "p-3  font-medium hover:rounded-md  text-[18px] text-black font-sans "
+        }
+        to="/findyourdream"
+      >
         <li>Find Your Dream</li>
       </NavLink>
     </>
   );
 
+  // console.log(users);
+
   return (
-    <div className="navbar w-[70%] mx-auto bg-base-100">
+    <div className="navbar w-[95%] lg:w-[70%] mx-auto bg-base-100">
       <div className="navbar-start">
         <div className="dropdown lg:hidden">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -71,13 +89,44 @@ const Nav = () => {
             {navLinks}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">daisyUI</a>
+        <Link className="font-sans text-2xl font-bold " to="/">
+          VisitNow
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{navLinks}</ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">Button</a>
+        {users ? (
+          <>
+            <div
+              onClick={() => setProfileClicked(!isProfileClicked)}
+              className={` avatar placeholder hover:cursor-pointer`}
+            >
+              <div className="bg-neutral text-neutral-content rounded-full w-12">
+                {users?.photoURL}
+              </div>
+            </div>
+            {isProfileClicked && (
+              <div className="relative ">
+                <UserMenu></UserMenu>
+              </div>
+            )}
+          </>
+        ) : (
+          <>
+            <NavLink
+              className={({ isActive }) =>
+                isActive
+                  ? "px-3 py-2 border font-sans text-[18px] text-black font-medium border-blue-300 rounded-md"
+                  : "p-3 text-[18px]  hover:rounded-md  font-sans text-black font-medium"
+              }
+              to="/loginuser"
+            >
+              <li className="list-none">Log In</li>
+            </NavLink>
+          </>
+        )}
       </div>
     </div>
   );

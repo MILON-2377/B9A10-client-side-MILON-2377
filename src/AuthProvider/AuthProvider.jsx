@@ -1,44 +1,49 @@
+import {
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { createContext, useEffect, useState } from "react";
+import auth from "../Firebase/firebase.config";
 
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import Root from "../Layouts/Root";
-import PlacesToGo from "../Pages/Home/PlacesToGo";
-import ThingsToGo from "../Pages/Home/ThingsToGo";
-import FindYourDream from "../Pages/Home/FindYourDream";
-import PlaneYourTrip from "../Pages/Home/PlaneYourTrip";
+export const authProviderContext = createContext(null);
 
+const AuthProvider = ({ children }) => {
+  const [users, setUsers] = useState(null);
+  const [isProfileClicked, setProfileClicked] = useState(false);
 
-const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <Root></Root>,
-        children: [
-            {
-                path: "/destination"
-            },
-            {
-                path: '/placestogo',
-                element: <PlacesToGo></PlacesToGo>
-            },
-            {
-                path: "/thingstogo",
-                element: <ThingsToGo></ThingsToGo>
-            },
-            {
-                path: "/findyourdream",
-                element: <FindYourDream></FindYourDream>
-            },
-            {
-                path: "/planeyourtrip",
-                element: <PlaneYourTrip></PlaneYourTrip>
-            }
-        ]
-    }
-])
+  // create user
+  const createUser = (email, password) => {
+    return createUserWithEmailAndPassword(auth, email, password);
+  };
 
-const AuthProvider = () => {
-    return (
-        <RouterProvider router={router}></RouterProvider>
-    );
+  // user log in
+  const logInUser = (email, password) => {
+    return signInWithEmailAndPassword(auth, email, password);
+  };
+
+  // isUser logged In
+  useEffect(() => {
+    const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+      currentUser && setUsers(currentUser);
+    });
+
+    return () => unSubscribe();
+  }, []);
+
+  const authInfo = {
+    createUser,
+    users,
+    logInUser,
+    isProfileClicked,
+    setProfileClicked,
+  };
+
+  return (
+    <authProviderContext.Provider value={authInfo}>
+      {children}
+    </authProviderContext.Provider>
+  );
 };
 
 export default AuthProvider;
