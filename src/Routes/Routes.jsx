@@ -9,6 +9,7 @@ import RegisterUser from "../Pages/RegisterUser";
 import AuthProvider from "../AuthProvider/AuthProvider";
 import LogIn from "../Pages/LogIn";
 import AddTouristSpots from "../Pages/AddTouristSopt/AddTouristSpots";
+import AllTouristSports from "../Pages/AddTouristSopt/AllTouristSports";
 
 
 const router = createBrowserRouter([
@@ -46,6 +47,11 @@ const router = createBrowserRouter([
             {
                 path: "/addtouristspot",
                 element: <AddTouristSpots></AddTouristSpots>
+             },
+             {
+                path: "/alltouristsports",
+                element: <AllTouristSports></AllTouristSports>,
+                loader: () => fetch("http://localhost:5000/touristspots")
              }
         ]
     }

@@ -11,6 +11,7 @@ export const authProviderContext = createContext(null);
 const AuthProvider = ({ children }) => {
   const [users, setUsers] = useState(null);
   const [isProfileClicked, setProfileClicked] = useState(false);
+  const [touristSports, setTouristSport] = useState();
 
   // create user
   const createUser = (email, password) => {
@@ -37,6 +38,8 @@ const AuthProvider = ({ children }) => {
     logInUser,
     isProfileClicked,
     setProfileClicked,
+    touristSports,
+    setTouristSport,
   };
 
   return (

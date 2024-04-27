@@ -25,12 +25,13 @@ const UserMenu = () => {
           Add Tourist Spot
         </NavLink>
         <NavLink
+          onClick={() => setProfileClicked(false)}
           className={({ isActive }) =>
             isActive
               ? " g-gray-100 px-3 py-2 border font-sans text-[18px] text-black font-medium border-blue-300 rounded-md"
               : "p-3 text-[18px] hover:rounded-md hover:bg-gray-100 hover:px-3 hover:py-2 transition-all duration-700 font-sans text-black font-medium"
           }
-          to="/destination"
+          to="/alltouristsports"
         >
           All Tourist Sopts
         </NavLink>
