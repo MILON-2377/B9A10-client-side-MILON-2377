@@ -3,7 +3,17 @@ import { NavLink } from "react-router-dom";
 import useAuthProvider from "../AuthProvider/useAuthProvider";
 
 const UserMenu = () => {
-  const { users, isProfileClicked, setProfileClicked } = useAuthProvider();
+  const { users, isProfileClicked, setProfileClicked, userLogOut } = useAuthProvider();
+
+  const handlerLotOut = () => {
+    userLogOut()
+    .then(res => {
+      console.log(res.user)
+    })
+    .catch(error => {
+      console.log(error.message);
+    })
+  }
 
   return (
     <div className="card absolute border-blue-300 border animate__animated animate__fast animate__slideInRight -left-[400px]  lg:-left-[170px] top-8 z-20  w-96 bg-base-100 shadow-xl">
@@ -45,6 +55,13 @@ const UserMenu = () => {
         >
           Mylist Page
         </NavLink>
+        <button
+        onClick={handlerLotOut}
+          className="btn bg-slate-800 hover:bg-slate-700 text-white
+        "
+        >
+          Log Out
+        </button>
       </div>
     </div>
   );

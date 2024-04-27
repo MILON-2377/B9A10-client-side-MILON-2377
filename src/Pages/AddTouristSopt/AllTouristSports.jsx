@@ -10,7 +10,7 @@ const AllTouristSports = () => {
     // console.log(bdTouristSports);
 
     return (
-        <div className="grid lg:grid-cols-3 gap-5">
+        <div className="grid lg:grid-cols-3 grid-cols-1 gap-5">
             {
                 bdTouristSports.map(sport =><TouristSportl key={sport._id} sports={sport}></TouristSportl>)
             }
