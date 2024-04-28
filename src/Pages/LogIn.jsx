@@ -6,8 +6,7 @@ import { GoogleAuthProvider } from "firebase/auth";
 import auth from "../Firebase/firebase.config";
 import { FaGoogle } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
-import { GithubAuthProvider } from "firebase/auth/cordova";
-import { GiConsoleController } from "react-icons/gi";
+import { GithubAuthProvider } from "firebase/auth";
 
 const LogIn = () => {
   const {

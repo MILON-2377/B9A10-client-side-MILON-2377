@@ -13,16 +13,28 @@ const RegisterUser = () => {
 
   const { createUser } = useAuthProvider();
 
-  const handlerUserRegisrter = ({ name, email, password, photourl }) => {
+  const handlerUserRegisrter = ({ email, password, name }) => {
+    const user = {email, name}
     createUser(email, password)
       .then((res) => {
         console.log(res.user);
         reset();
-        Swal.fire({
-          title: "The Internet?",
-          text: "That thing is still around?",
-          icon: "question",
-        });
+        fetch("http://localhost:5000/users", {
+          method: "post",
+          headers: {
+            "content-type": "application/json"
+          },
+          body: JSON.stringify(user)
+        })
+          .then((res) => res.json())
+          .then(() => {
+            // console.log(data);
+            Swal.fire({
+              title: "Register Successfull",
+              text: "Your account created succssfully",
+              icon: "question",
+            });
+          });
       })
       .catch((error) => {
         console.log(error.message);
@@ -120,7 +132,8 @@ const RegisterUser = () => {
             <p>Already have an account?</p>
             <Link
               className="font-sans hover:text-blue-500 hover:underline "
-              to='/loginuser'>
+              to="/loginuser"
+            >
               LogIn
             </Link>
           </div>

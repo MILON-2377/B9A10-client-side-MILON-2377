@@ -11,6 +11,8 @@ import LogIn from "../Pages/LogIn";
 import AddTouristSpots from "../Pages/AddTouristSopt/AddTouristSpots";
 import AllTouristSports from "../Pages/AddTouristSopt/AllTouristSports";
 import ViewDetails from "../components/ViewDetails";
+import MyList from "../Pages/AddTouristSopt/MyList";
+import ProtectedRoute from "../PrivateRoute/ProtectedRoute";
 
 
 const router = createBrowserRouter([
@@ -56,8 +58,13 @@ const router = createBrowserRouter([
              },
              {
                 path: "/viewdetails/:id",
-                element: <ViewDetails></ViewDetails>,
+                element: <ProtectedRoute><ViewDetails></ViewDetails></ProtectedRoute>,
                 loader: ({params}) => fetch(`http://localhost:5000/touristspots/${params.id}`)
+             },
+             {
+                path: "/mylist",
+                element: <ProtectedRoute><MyList></MyList></ProtectedRoute>,
+                loader: () => fetch("http://localhost:5000/touristspots")
              }
         ]
     }

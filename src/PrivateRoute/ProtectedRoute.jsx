@@ -1,10 +1,14 @@
+import { Navigate } from "react-router-dom";
+import useAuthProvider from "../AuthProvider/useAuthProvider";
 
-const ProtectedRoute = () => {
-    return (
-        <div>
-            
-        </div>
-    );
+const ProtectedRoute = ({ children }) => {
+  const { users } = useAuthProvider();
+
+  if (users) {
+    return children;
+  } else {
+    <Navigate to="/loginuser"></Navigate>;
+  }
 };
 
 export default ProtectedRoute;
