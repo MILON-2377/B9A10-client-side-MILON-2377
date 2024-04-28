@@ -11,6 +11,8 @@ import ViewDetails from "../components/ViewDetails";
 import MyList from "../Pages/AddTouristSopt/MyList";
 import ProtectedRoute from "../PrivateRoute/ProtectedRoute";
 import Update from "../Pages/UpdatePage/Update";
+import AddCountries from "../Pages/CreateCountryInfo/AddCountries";
+import ViewAllCountries from "../Pages/CreateCountryInfo/ViewAllCountries";
 
 const router = createBrowserRouter([
   {
@@ -78,6 +80,14 @@ const router = createBrowserRouter([
         ),
         
       },
+      {
+        path: "/addcountries",
+        element: <AddCountries></AddCountries>
+      },
+      {
+        path: "/countries",
+        element: <ViewAllCountries></ViewAllCountries>
+      }
     ],
   },
 ]);

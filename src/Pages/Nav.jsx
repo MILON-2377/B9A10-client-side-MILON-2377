@@ -60,7 +60,21 @@ const Nav = () => {
           Tourist Countries
         </button>
         {dropDown ? (
-          <ul className="menu absolute z-30 bg-base-200 w-56 rounded-box">
+          <ul className="menu py-4 px-3 absolute z-30 bg-base-200 w-56 rounded-box">
+            <li
+              
+            >
+              <NavLink
+                className={({ isActive }) =>
+                  isActive
+                    ? "px-3 font-medium py-2 border text-[18px] font-sans text-black border-blue-300 rounded-md"
+                    : "p-3  font-medium hover:rounded-md  text-[18px] text-black font-sans "
+                }
+                to="/addcountries"
+              >
+                Add Countries
+              </NavLink>
+            </li>
             <li>
               <NavLink
                 className={({ isActive }) =>
@@ -68,7 +82,7 @@ const Nav = () => {
                     ? "px-3 font-medium py-2 border text-[18px] font-sans text-black border-blue-300 rounded-md"
                     : "p-3  font-medium hover:rounded-md  text-[18px] text-black font-sans "
                 }
-                to="/country"
+                to="/countries"
               >
                 <li>All Countries</li>
               </NavLink>
@@ -133,7 +147,6 @@ const Nav = () => {
         {users ? (
           <>
             <div
-              
               onClick={() => setProfileClicked(!isProfileClicked)}
               className={` avatar placeholder hover:cursor-pointer`}
             >
@@ -150,7 +163,7 @@ const Nav = () => {
         ) : (
           <>
             <NavLink
-            onClick={() => isProfileClicked(false)}
+              onClick={() => isProfileClicked(false)}
               className={({ isActive }) =>
                 isActive
                   ? "px-3 py-2 border font-sans text-[18px] text-black font-medium border-blue-300 rounded-md"
