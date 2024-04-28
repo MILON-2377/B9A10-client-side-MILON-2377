@@ -1,9 +1,12 @@
 import { Link, NavLink } from "react-router-dom";
 import useAuthProvider from "../AuthProvider/useAuthProvider";
 import UserMenu from "../components/UserMenu";
+import { useState } from "react";
 
 const Nav = () => {
   const { users, isProfileClicked, setProfileClicked } = useAuthProvider();
+
+  const [dropDown, setDropDown] = useState();
 
   const navLinks = (
     <>
@@ -47,16 +50,46 @@ const Nav = () => {
       >
         <li>Add Tourist Sport</li>
       </NavLink>
-      <NavLink
-        className={({ isActive }) =>
-          isActive
-            ? "px-3 font-medium py-2 border text-[18px] font-sans text-black border-blue-300 rounded-md"
-            : "p-3  font-medium hover:rounded-md  text-[18px] text-black font-sans "
-        }
-        to="/alltouristsports"
+
+      <div
+        onMouseEnter={() => setDropDown(true)}
+        onMouseLeave={() => setDropDown(false)}
+        className="relative"
       >
-        <li>All Tourist Sport</li>
-      </NavLink>
+        <button className="p-3  font-medium hover:rounded-md  text-[18px]  font-sans text-black">
+          Tourist Countries
+        </button>
+        {dropDown ? (
+          <ul className="menu absolute z-30 bg-base-200 w-56 rounded-box">
+            <li>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive
+                    ? "px-3 font-medium py-2 border text-[18px] font-sans text-black border-blue-300 rounded-md"
+                    : "p-3  font-medium hover:rounded-md  text-[18px] text-black font-sans "
+                }
+                to="/country"
+              >
+                <li>All Countries</li>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive
+                    ? "px-3 font-medium py-2 border text-[18px] font-sans text-black border-blue-300 rounded-md"
+                    : "p-3  font-medium hover:rounded-md  text-[18px] text-black font-sans "
+                }
+                to="/alltouristsports"
+              >
+                <li>All Tourist Sport</li>
+              </NavLink>
+            </li>
+          </ul>
+        ) : (
+          ""
+        )}
+      </div>
     </>
   );
 
@@ -100,6 +133,7 @@ const Nav = () => {
         {users ? (
           <>
             <div
+              
               onClick={() => setProfileClicked(!isProfileClicked)}
               className={` avatar placeholder hover:cursor-pointer`}
             >
@@ -116,6 +150,7 @@ const Nav = () => {
         ) : (
           <>
             <NavLink
+            onClick={() => isProfileClicked(false)}
               className={({ isActive }) =>
                 isActive
                   ? "px-3 py-2 border font-sans text-[18px] text-black font-medium border-blue-300 rounded-md"

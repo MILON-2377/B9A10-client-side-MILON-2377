@@ -2,7 +2,7 @@ import "animate.css";
 import useAuthProvider from "../AuthProvider/useAuthProvider";
 
 const UserMenu = () => {
-  const { users,userLogOut } = useAuthProvider();
+  const { users,userLogOut, setProfileClicked } = useAuthProvider();
 
   const handlerLotOut = () => {
     userLogOut()
@@ -15,7 +15,7 @@ const UserMenu = () => {
   }
 
   return (
-    <div className="card absolute border-blue-300 border animate__animated animate__fast animate__slideInRight -left-[400px]  lg:-left-[170px] top-8 z-20  w-96 bg-base-100 shadow-xl">
+    <div onMouseLeave={() => setProfileClicked(false)} className="card absolute border-blue-300 border animate__animated animate__fast animate__slideInRight -left-[400px]  lg:-left-[170px] top-8 z-20  w-96 bg-base-100 shadow-xl">
       <div className="card-body">
         <h1>Name: {users?.displayName}</h1>
         <p>
