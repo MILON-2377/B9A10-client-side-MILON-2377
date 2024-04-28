@@ -1,4 +1,4 @@
-import { Link, Navigate, useLoaderData, useNavigation } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import useAuthProvider from "../../AuthProvider/useAuthProvider";
 import { FaEye } from "react-icons/fa";
 import { MdEdit } from "react-icons/md";
@@ -45,15 +45,9 @@ const MyList = () => {
     });
   };
 
-  // const navigate = useNavigation();
-  // const handlerView = (id) => {
-  //   // <Navigate to={`/viewdetails/${id}`}></Navigate>
-  //   navigate(`/viewdetails/${id}`)
-  // }
-
   return (
-    <div className="mt-11 w-[80%] mx-auto overflow-auto">
-      <table className="table ">
+    <div className="mt-11 px-8 lg:w-[80%] mx-auto overflow-auto">
+      <table className="table">
         <thead className="">
           <tr>
             <th>Country Name</th>
@@ -64,22 +58,27 @@ const MyList = () => {
             <th>Delete</th>
           </tr>
         </thead>
-        <tbody>
-          {fileredData.map((sport) => (
-            <>
+
+        {fileredData.map((sport) => (
+          <>
+            <tbody key={sport._id}>
               <tr>
                 <th>{sport.countryName}</th>
                 <th>{sport.spotName}</th>
                 <th>{sport.location}</th>
                 <th>
-                  <Link to={`/viewdetails/${sport._id}`}><button className="hover:border hover:border-blue-400 hover:rounded-md px-3 py-2" >
-                    <FaEye className="text-2xl"></FaEye>
-                  </button></Link>
+                  <Link to={`/viewdetails/${sport._id}`}>
+                    <button className="hover:border hover:border-blue-400 hover:rounded-md px-3 py-2">
+                      <FaEye className="text-2xl"></FaEye>
+                    </button>
+                  </Link>
                 </th>
                 <th>
-                  <button className="hover:border hover:border-blue-400 hover:rounded-md px-3 py-2">
-                    <MdEdit className="text-2xl"></MdEdit>
-                  </button>
+                  <Link to={`/update/:${sport._id}`}>
+                    <button className="hover:border hover:border-blue-400 hover:rounded-md px-3 py-2">
+                      <MdEdit className="text-2xl"></MdEdit>
+                    </button>
+                  </Link>
                 </th>
                 <th>
                   <button
@@ -90,9 +89,9 @@ const MyList = () => {
                   </button>
                 </th>
               </tr>
-            </>
-          ))}
-        </tbody>
+            </tbody>
+          </>
+        ))}
       </table>
     </div>
   );

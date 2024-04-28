@@ -13,9 +13,9 @@ const Nav = () => {
             ? "px-3 py-2 border font-sans text-[18px] text-black font-medium border-blue-300 rounded-md"
             : "p-3 text-[18px] hover:rounded-md  font-sans text-black font-medium"
         }
-        to="/destination"
+        to="/mylist"
       >
-        <li>Destination</li>
+        <li>My Tourist List</li>
       </NavLink>
       <NavLink
         className={({ isActive }) =>
@@ -43,9 +43,9 @@ const Nav = () => {
             ? "px-3 font-medium py-2 border font-sans text-[18px]   text-black  border-blue-300 rounded-md bg-gray-100"
             : "p-3  font-medium hover:rounded-md  text-[18px]  font-sans text-black "
         }
-        to="/planeyourtrip"
+        to="/addtouristspot"
       >
-        <li>Plane Your Trip</li>
+        <li>Add Tourist Sport</li>
       </NavLink>
       <NavLink
         className={({ isActive }) =>
@@ -53,9 +53,9 @@ const Nav = () => {
             ? "px-3 font-medium py-2 border text-[18px] font-sans text-black border-blue-300 rounded-md"
             : "p-3  font-medium hover:rounded-md  text-[18px] text-black font-sans "
         }
-        to="/findyourdream"
+        to="/alltouristsports"
       >
-        <li>Find Your Dream</li>
+        <li>All Tourist Sport</li>
       </NavLink>
     </>
   );

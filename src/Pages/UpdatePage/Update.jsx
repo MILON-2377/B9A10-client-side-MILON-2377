@@ -1,33 +1,52 @@
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import { useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 
+const Update = () => {
+  const { register, handleSubmit, reset } = useForm();
+  const [updateData, setUpdateData] = useState();
+  const { id } = useParams();
+  const idWithoutColon = id.substring(1);
 
-const AddTouristSpots = () => {
+  useEffect(() => {
+    fetch(`http://localhost:5000/touristspots/${idWithoutColon}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setUpdateData(data);
+      });
+  }, [idWithoutColon]);
 
-    const {register, handleSubmit, reset}  = useForm();
-    
-    const handlerAddTourisSpot = (data) => {
-        fetch("http://localhost:5000/touristspots", {
-            method: "post",
-            headers: {
-                "content-type" : "application/json"
-            },
-            body: JSON.stringify({...data})
-        })
-        .then(res => res.json())
-        .then(data => {
-            toast("Your data has been successfully stored in Mongodb database!!")
-            reset();
-        })
-    }
+console.log(updateData)
+  const handlerAddTourisSpot = (data) => {
+    fetch(`http://localhost:5000/touristspots/${idWithoutColon}`, {
+        method: "put",
+        headers: {
+            "content-type" : "application/json",
+        },
+        body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(dat => {
+        dat.modifiedCount > 0 && 
+        Swal.fire({
+            title: "Updated!!!",
+            text: "Tourist spot updated successfully",
+            icon: "success"
+          });
+        reset();
+    })
+  };
 
   return (
     <div className="hero w-full bg-base-100">
       <div className="shrink-0 w-full">
-        <form onSubmit={handleSubmit((data) => {
+        <form
+          onSubmit={handleSubmit((data) => {
             handlerAddTourisSpot(data);
-        })} className="card-body lg:w-[50%] mx-auto flex items-center gap-5">
+          })}
+          className="card-body lg:w-[50%] mx-auto flex items-center gap-5"
+        >
           <div className="flex w-full gap-5">
             <div className="w-full">
               <div className="form-control">
@@ -37,9 +56,8 @@ const AddTouristSpots = () => {
                 <input
                   type="text"
                   placeholder="image URL"
-                  {
-                    ...register("image")
-                  }
+                  {...register("image")}
+                  defaultValue={updateData?.image}
                   className="input input-bordered"
                   required
                 />
@@ -51,9 +69,8 @@ const AddTouristSpots = () => {
                 <input
                   type="text"
                   placeholder="tourist spot name"
-                  {
-                    ...register("spotName")
-                  }
+                  {...register("spotName")}
+                  defaultValue={updateData?.spotName}
                   className="input input-bordered"
                   required
                 />
@@ -65,9 +82,8 @@ const AddTouristSpots = () => {
                 <input
                   type="text"
                   placeholder="country name"
-                  {
-                    ...register("countryName")
-                  }
+                  {...register("countryName")}
+                  defaultValue={updateData?.countryName}
                   className="input input-bordered"
                   required
                 />
@@ -79,23 +95,8 @@ const AddTouristSpots = () => {
                 <input
                   type="text"
                   placeholder="location"
-                  {
-                    ...register("location")
-                  }
-                  className="input input-bordered"
-                  required
-                />
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Average cost</span>
-                </label>
-                <input
-                  type="Number"
-                  placeholder="average cost"
-                  {
-                    ...register("cost")
-                  }
+                  {...register("location")}
+                  defaultValue={updateData?.location}
                   className="input input-bordered"
                   required
                 />
@@ -109,9 +110,8 @@ const AddTouristSpots = () => {
                 <input
                   type="text"
                   placeholder="seasons"
-                  {
-                    ...register("season")
-                  }
+                  {...register("season")}
+                  defaultValue={updateData?.season}
                   className="input input-bordered"
                   required
                 />
@@ -123,9 +123,8 @@ const AddTouristSpots = () => {
                 <input
                   type="number"
                   placeholder="travel time"
-                  {
-                    ...register("travleTime")
-                  }
+                  {...register("travleTime")}
+                  defaultValue={updateData?.travleTime}
                   className="input input-bordered"
                   required
                 />
@@ -137,37 +136,21 @@ const AddTouristSpots = () => {
                 <input
                   type="text"
                   placeholder="total visitors"
-                  {
-                    ...register("visitorsAmount")
-                  }
+                  {...register("visitorsAmount")}
+                  defaultValue={updateData?.visitorsAmount}
                   className="input input-bordered"
                   required
                 />
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Email</span>
+                  <span className="label-text">Average cost</span>
                 </label>
                 <input
-                  type="email"
-                  placeholder="email"
-                  {
-                    ...register("email")
-                  }
-                  className="input input-bordered"
-                  required
-                />
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Name</span>
-                </label>
-                <input
-                  type="text"
-                  placeholder="name"
-                  {
-                    ...register("name")
-                  }
+                  type="Number"
+                  placeholder="average cost"
+                  {...register("cost")}
+                  defaultValue={updateData?.cost}
                   className="input input-bordered"
                   required
                 />
@@ -181,21 +164,20 @@ const AddTouristSpots = () => {
             <input
               type="text"
               placeholder="description"
-              {
-                ...register("description")
-              }
+              {...register("description")}
+              defaultValue={updateData?.description}
               className="input input-bordered"
               required
             />
           </div>
           <div className="form-control w-full mt-3">
-            <button className="btn bg-slate-800 hover:bg-slate-700 text-white ">Add</button>
+            <button className="btn bg-slate-800 hover:bg-slate-700 text-white ">
+              Update
+            </button>
           </div>
         </form>
       </div>
-      <ToastContainer></ToastContainer>
     </div>
   );
 };
-
-export default AddTouristSpots;
+export default Update;
