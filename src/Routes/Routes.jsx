@@ -13,12 +13,19 @@ import ProtectedRoute from "../PrivateRoute/ProtectedRoute";
 import Update from "../Pages/UpdatePage/Update";
 import AddCountries from "../Pages/CreateCountryInfo/AddCountries";
 import ViewAllCountries from "../Pages/CreateCountryInfo/ViewAllCountries";
+import Home from "../Pages/Home/Home";
+import MatchTouristSpot from "../Pages/Home/MatchTouristSpot";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
     children: [
+      {
+        path: '/',
+        element: <Home></Home>,
+        loader: () => fetch("http://localhost:5000/countries")
+      },
       {
         path: "/registeruser",
         element: <RegisterUser></RegisterUser>,
@@ -87,6 +94,11 @@ const router = createBrowserRouter([
       {
         path: "/countries",
         element: <ViewAllCountries></ViewAllCountries>
+      },
+      {
+        path: "/country/:country",
+        element: <MatchTouristSpot></MatchTouristSpot>,
+        loader: ({params}) => fetch(`http://localhost:5000/touristspots?countryName=${params.country}`)
       }
     ],
   },

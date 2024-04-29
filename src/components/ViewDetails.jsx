@@ -4,7 +4,7 @@ import { FaLocationDot } from "react-icons/fa6";
 const ViewDetails = () => {
   const singleTourisSport = useLoaderData();
 
-  // console.log(singleTourisSport);
+  console.log(singleTourisSport);
 
   const { image, spotName, description, location, cost, season, travleTime} =
     singleTourisSport;

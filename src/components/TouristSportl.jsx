@@ -1,13 +1,9 @@
 import { Link } from "react-router-dom";
+import PropTypes from 'prop-types';
 
 const TouristSportl = ({ sports }) => {
-  // console.log(sports);
+
   const { image, description, _id, spotName } = sports;
-
-  // const handlerViewDetails = () => {
-  //   // fetch(`http://localhost:5000/touristspots/${_id}`)
-  // }
-
   return (
     <div className="card  bg-base-100 shadow-xl">
       <figure>
@@ -26,5 +22,9 @@ const TouristSportl = ({ sports }) => {
     </div>
   );
 };
+
+TouristSportl.propTypes = {
+  sports: PropTypes.object
+}
 
 export default TouristSportl;
