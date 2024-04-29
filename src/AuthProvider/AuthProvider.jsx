@@ -6,6 +6,7 @@ import {
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import auth from "../Firebase/firebase.config";
+import PropTypes from 'prop-types';
 
 export const authProviderContext = createContext(null);
 
@@ -26,6 +27,7 @@ const AuthProvider = ({ children }) => {
 
 //   user log out
 const userLogOut = () => {
+    setUsers(null);
     return signOut(auth);
 }
 
@@ -55,5 +57,9 @@ const userLogOut = () => {
     </authProviderContext.Provider>
   );
 };
+
+AuthProvider.propTypes = {
+  children: PropTypes.node
+}
 
 export default AuthProvider;

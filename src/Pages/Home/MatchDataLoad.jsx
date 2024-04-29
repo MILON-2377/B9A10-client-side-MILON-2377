@@ -1,8 +1,8 @@
-import PropTypes from 'prop-types';
-
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const MatchDataLoad = ({ spots }) => {
-  const { spotName, image, countryName, location, cost, season, description } =
+  const { spotName, image, countryName, location, cost, season, description, _id } =
     spots;
 
   return (
@@ -21,16 +21,25 @@ const MatchDataLoad = ({ spots }) => {
               <p className="text-xl font-serif ">{countryName}</p>
             </div>
             <p>{location}</p>
-            <p> <span className="font-bold font-serif text-xl">Season:</span> {season}</p>
-            <p> <span className="font-bold text-xl font-serif">Cost:</span> {cost}</p>
+            <p>
+              {" "}
+              <span className="font-bold font-serif text-xl">Season:</span>{" "}
+              {season}
+            </p>
+            <p>
+              {" "}
+              <span className="font-bold text-xl font-serif">Cost:</span> {cost}
+            </p>
             <p className="text-gray-100 font-serif ">{description}</p>
           </div>
-          <button
-            type="button"
-            className="flex items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md bg-violet-400 text-gray-900"
-          >
-            View Details
-          </button>
+          <Link to={`/viewdetails/${_id}`}>
+            <button
+              type="button"
+              className="flex items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md bg-violet-400 text-gray-900"
+            >
+              View Details
+            </button>
+          </Link>
         </div>
       </div>
     </div>
@@ -38,7 +47,7 @@ const MatchDataLoad = ({ spots }) => {
 };
 
 MatchDataLoad.propTypes = {
-    spots: PropTypes.object
-}
+  spots: PropTypes.object,
+};
 
 export default MatchDataLoad;
