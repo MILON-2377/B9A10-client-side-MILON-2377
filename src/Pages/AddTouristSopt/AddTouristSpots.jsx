@@ -8,7 +8,7 @@ const AddTouristSpots = () => {
     const {register, handleSubmit, reset}  = useForm();
     
     const handlerAddTourisSpot = (data) => {
-        fetch("http://localhost:5000/touristspots", {
+        fetch("https://b9a10-server-side-milon-2377.vercel.app/spots", {
             method: "post",
             headers: {
                 "content-type" : "application/json"

@@ -6,17 +6,23 @@ const AllTouristSports = () => {
   const bdTouristSports = useLoaderData();
   const [alldata, setAlldata] = useState(bdTouristSports);
   const [search, setSearch] = useState(null);
-
-//   const hanlderCostSearch = (id) => {
-//     setSearch(false);
-//     alldata.filter(data => data.)
-
-//   }
+  const hanlderCostSearch = (id) => {
+    setSearch(false);
+    if (id === 1) {
+      const sortedSpots = [...alldata].sort((a, b) => a.rating - b.rating);
+      setAlldata(sortedSpots);
+    }
+  };
 
   return (
     <div>
-      <div  className="w-[60%] flex items-center flex-col gap-3 justify-center mb-14 mt-11 mx-auto">
-        <button onMouseEnter={() => setSearch(true)} className="btn btn-secondary ">Search By</button>
+      <div className="w-[60%] flex items-center flex-col gap-3 justify-center mb-14 mt-11 mx-auto">
+        <button
+          onMouseEnter={() => setSearch(true)}
+          className="btn btn-secondary "
+        >
+          Search By
+        </button>
         {search ? (
           <ul
             onMouseLeave={() => setSearch(false)}

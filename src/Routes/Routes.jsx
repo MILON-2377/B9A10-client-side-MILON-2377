@@ -24,7 +24,7 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home></Home>,
-        loader: () => fetch("http://localhost:5000/countries")
+        loader: () => fetch("https://b9a10-server-side-milon-2377.vercel.app/countries")
       },
       {
         path: "/registeruser",
@@ -57,7 +57,7 @@ const router = createBrowserRouter([
       {
         path: "/alltouristsports",
         element: <AllTouristSports></AllTouristSports>,
-        loader: () => fetch("http://localhost:5000/touristspots"),
+        loader: () => fetch("https://b9a10-server-side-milon-2377.vercel.app/spots"),
       },
       {
         path: "/viewdetails/:id",
@@ -67,7 +67,7 @@ const router = createBrowserRouter([
           </ProtectedRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/touristspots/${params.id}`),
+          fetch(`https://b9a10-server-side-milon-2377.vercel.app/spots${params.id}`),
       },
       {
         path: "/mylist",
@@ -76,7 +76,7 @@ const router = createBrowserRouter([
             <MyList></MyList>
           </ProtectedRoute>
         ),
-        loader: () => fetch("http://localhost:5000/touristspots"),
+        loader: () => fetch("https://b9a10-server-side-milon-2377.vercel.app/spots"),
       },
       {
         path: "/update/:id",
@@ -98,7 +98,7 @@ const router = createBrowserRouter([
       {
         path: "/country/:country",
         element: <MatchTouristSpot></MatchTouristSpot>,
-        loader: ({params}) => fetch(`http://localhost:5000/touristspots?countryName=${params.country}`)
+        loader: ({params}) => fetch(`https://b9a10-server-side-milon-2377.vercel.app/spots?countryName=${params.country}`)
       }
     ],
   },

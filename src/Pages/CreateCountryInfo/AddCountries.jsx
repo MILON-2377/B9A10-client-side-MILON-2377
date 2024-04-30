@@ -11,7 +11,7 @@ const AddCountries = () => {
     const countrisData = { image, countryName, description };
     // console.log(countrisData)
 
-    fetch("http://localhost:5000/countries", {
+    fetch("https://b9a10-server-side-milon-2377.vercel.app/countries", {
       method: "post",
       headers: {
         "content-type" : "application/json"

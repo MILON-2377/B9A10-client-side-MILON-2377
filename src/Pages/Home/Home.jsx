@@ -4,7 +4,8 @@ import AllCountries from "./AllCountries";
 
 const Home = () => {
   const countriesData = useLoaderData();
-  // console.log(countriesData);
+  console.log(countriesData);
+
 
   return (
     <div>
