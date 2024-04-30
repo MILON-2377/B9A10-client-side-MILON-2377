@@ -19,7 +19,7 @@ const RegisterUser = () => {
       .then((res) => {
         console.log(res.user);
         reset();
-        fetch("http://localhost:5000/users", {
+        fetch("https://b9a10-server-side-milon-2377-milon-2377-milon-sheikhs-projects.vercel.app/users", {
           method: "post",
           headers: {
             "content-type": "application/json"

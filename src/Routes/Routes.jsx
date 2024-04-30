@@ -24,7 +24,7 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home></Home>,
-        loader: () => fetch("https://b9a10-server-side-milon-2377.vercel.app/countries")
+        loader: () => fetch("https://b9a10-server-side-milon-2377-milon-2377-milon-sheikhs-projects.vercel.app/countries")
       },
       {
         path: "/registeruser",
@@ -57,7 +57,7 @@ const router = createBrowserRouter([
       {
         path: "/alltouristsports",
         element: <AllTouristSports></AllTouristSports>,
-        loader: () => fetch("https://b9a10-server-side-milon-2377.vercel.app/spots"),
+        loader: () => fetch("https://b9a10-server-side-milon-2377-milon-2377-milon-sheikhs-projects.vercel.app/spots"),
       },
       {
         path: "/viewdetails/:id",
@@ -66,8 +66,7 @@ const router = createBrowserRouter([
             <ViewDetails></ViewDetails>
           </ProtectedRoute>
         ),
-        loader: ({ params }) =>
-          fetch(`https://b9a10-server-side-milon-2377.vercel.app/spots${params.id}`),
+        loader: ({params}) => fetch(`https://b9a10-server-side-milon-2377-milon-2377-milon-sheikhs-projects.vercel.app/spots/${params.id}`)
       },
       {
         path: "/mylist",
@@ -76,7 +75,7 @@ const router = createBrowserRouter([
             <MyList></MyList>
           </ProtectedRoute>
         ),
-        loader: () => fetch("https://b9a10-server-side-milon-2377.vercel.app/spots"),
+        loader: () => fetch("https://b9a10-server-side-milon-2377-milon-2377-milon-sheikhs-projects.vercel.app/spots"),
       },
       {
         path: "/update/:id",
@@ -98,7 +97,7 @@ const router = createBrowserRouter([
       {
         path: "/country/:country",
         element: <MatchTouristSpot></MatchTouristSpot>,
-        loader: ({params}) => fetch(`https://b9a10-server-side-milon-2377.vercel.app/spots?countryName=${params.country}`)
+        loader: () => fetch(`https://b9a10-server-side-milon-2377-milon-2377-milon-sheikhs-projects.vercel.app/spots`)
       }
     ],
   },
