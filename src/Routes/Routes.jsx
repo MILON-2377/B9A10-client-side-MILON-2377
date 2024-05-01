@@ -70,7 +70,7 @@ const router = createBrowserRouter([
             <ViewDetails></ViewDetails>
           </ProtectedRoute>
         ),
-        loader: ({params}) => fetch(`https://b9a10-server-side-milon-2377-beryl.vercel.app/spots${params.id}`)
+        loader: ({params}) => fetch(`https://b9a10-server-side-milon-2377-beryl.vercel.app/spots/${params.id}`)
       },
       {
         path: "/mylist",
