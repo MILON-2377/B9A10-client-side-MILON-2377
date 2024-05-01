@@ -9,11 +9,8 @@ const AddCountries = () => {
     const description = form.des.value;
 
     const countrisData = { image, countryName, description };
-    // console.log(countrisData)
 
-    // https://b9a10-server-side-milon-2377-dqjf3mtwb-milon-sheikhs-projects.vercel.app/spots
-
-    fetch("https://b9a10-server-side-milon-2377-dqjf3mtwb-milon-sheikhs-projects.vercel.app/countries", {
+    fetch("https://b9a10-server-side-milon-2377-beryl.vercel.app/countries", {
       method: "post",
       headers: {
         "content-type" : "application/json"

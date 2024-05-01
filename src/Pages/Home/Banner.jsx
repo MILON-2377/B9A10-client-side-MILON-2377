@@ -51,7 +51,7 @@ const Banner = () => {
               Explore Our World with Unforgettable Adventures, Captivating
               Cultures, and Breathtaking Landscapes!
             </p>
-            <button className="btn bg-slate-800 hover:bg-slate-700 text-white ">Get Started</button>
+          
           </div>
         </div>
       </div>

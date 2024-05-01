@@ -7,7 +7,7 @@ const ProtectedRoute = ({ children }) => {
   if (users) {
     return children;
   } else {
-    return <Navigate to="/loginuser"></Navigate>;
+    return <Navigate to="/login"></Navigate>;
   }
 };
 

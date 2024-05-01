@@ -75,18 +75,7 @@ const Nav = () => {
                 Add Countries
               </NavLink>
             </li>
-            <li>
-              <NavLink
-                className={({ isActive }) =>
-                  isActive
-                    ? "px-3 font-medium py-2 border text-[18px] font-sans text-black border-blue-300 rounded-md"
-                    : "p-3  font-medium hover:rounded-md  text-[18px] text-black font-sans "
-                }
-                to="/countries"
-              >
-                <li>All Countries</li>
-              </NavLink>
-            </li>
+           
             <li>
               <NavLink
                 className={({ isActive }) =>
@@ -169,7 +158,7 @@ const Nav = () => {
                   ? "px-3 py-2 border font-sans text-[18px] text-black font-medium border-blue-300 rounded-md"
                   : "p-3 text-[18px]  hover:rounded-md  font-sans text-black font-medium"
               }
-              to="/loginuser"
+              to="/login"
             >
               <li className="list-none">Log In</li>
             </NavLink>

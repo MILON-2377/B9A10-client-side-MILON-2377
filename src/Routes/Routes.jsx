@@ -15,6 +15,7 @@ import AddCountries from "../Pages/CreateCountryInfo/AddCountries";
 import ViewAllCountries from "../Pages/CreateCountryInfo/ViewAllCountries";
 import Home from "../Pages/Home/Home";
 import MatchTouristSpot from "../Pages/Home/MatchTouristSpot";
+import NotFoundPage from "../notFoundPage/NotFoundPage";
 
 const router = createBrowserRouter([
   {
@@ -24,16 +25,19 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home></Home>,
-        loader: () => fetch("https://b9a10-server-side-milon-2377-milon-2377-milon-sheikhs-projects.vercel.app/countries")
+        loader: () => fetch("https://b9a10-server-side-milon-2377-beryl.vercel.app/countries", {
+          data: "no-cors"
+        })
+      },
+      {
+        path: "/login",
+        element: <LogIn></LogIn>,
       },
       {
         path: "/registeruser",
         element: <RegisterUser></RegisterUser>,
       },
-      {
-        path: "/loginuser",
-        element: <LogIn></LogIn>,
-      },
+      
       {
         path: "/destination",
       },
@@ -57,7 +61,7 @@ const router = createBrowserRouter([
       {
         path: "/alltouristsports",
         element: <AllTouristSports></AllTouristSports>,
-        loader: () => fetch("https://b9a10-server-side-milon-2377-milon-2377-milon-sheikhs-projects.vercel.app/spots"),
+        loader: () => fetch("https://b9a10-server-side-milon-2377-beryl.vercel.app/spots"),
       },
       {
         path: "/viewdetails/:id",
@@ -66,7 +70,7 @@ const router = createBrowserRouter([
             <ViewDetails></ViewDetails>
           </ProtectedRoute>
         ),
-        loader: ({params}) => fetch(`https://b9a10-server-side-milon-2377-milon-2377-milon-sheikhs-projects.vercel.app/spots/${params.id}`)
+        loader: ({params}) => fetch(`https://b9a10-server-side-milon-2377-beryl.vercel.app/spots${params.id}`)
       },
       {
         path: "/mylist",
@@ -75,7 +79,7 @@ const router = createBrowserRouter([
             <MyList></MyList>
           </ProtectedRoute>
         ),
-        loader: () => fetch("https://b9a10-server-side-milon-2377-milon-2377-milon-sheikhs-projects.vercel.app/spots"),
+        loader: () => fetch("https://b9a10-server-side-milon-2377-beryl.vercel.app/spots"),
       },
       {
         path: "/update/:id",
@@ -97,10 +101,14 @@ const router = createBrowserRouter([
       {
         path: "/country/:country",
         element: <MatchTouristSpot></MatchTouristSpot>,
-        loader: () => fetch(`https://b9a10-server-side-milon-2377-milon-2377-milon-sheikhs-projects.vercel.app/spots`)
+        loader: () => fetch(`https://b9a10-server-side-milon-2377-beryl.vercel.app/spots`)
       }
-    ],
+    ]
   },
+  {
+    path: "/notfound",
+    element: <NotFoundPage></NotFoundPage>
+  }
 ]);
 
 const Routes = () => {

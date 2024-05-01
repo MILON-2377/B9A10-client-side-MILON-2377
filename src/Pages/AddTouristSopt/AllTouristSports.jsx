@@ -4,6 +4,7 @@ import { useState } from "react";
 
 const AllTouristSports = () => {
   const bdTouristSports = useLoaderData();
+  console.log(bdTouristSports);
   const [alldata, setAlldata] = useState(bdTouristSports);
   const [search, setSearch] = useState(null);
   const hanlderCostSearch = (id) => {
@@ -13,6 +14,7 @@ const AllTouristSports = () => {
       setAlldata(sortedSpots);
     }
   };
+
 
   return (
     <div>

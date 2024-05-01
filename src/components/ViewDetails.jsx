@@ -1,18 +1,18 @@
 import { useLoaderData, useParams } from "react-router-dom";
 import { FaLocationDot } from "react-icons/fa6";
-// import { useEffect, useState } from "react";
 
 const ViewDetails = () => {
   const {id} = useParams();
-  console.log(id);
   const singleTourisSport = useLoaderData();
   // useEffect(() => {
-  //   fetch(`https://b9a10-server-side-milon-2377.vercel.app/spots/${id}`)
+  //   fetch(`https://b9a10-server-side-milon-2377.vercel.app/spots/662cc2e060f33ce3dea414a3`)
   //   .then(res => res.json)
   //   .then(data => {
-      
+  //     // console.log(data);
   //   })
   // },[])
+
+  console.log(singleTourisSport)
 
   const { image, spotName, description, location, cost, season, travleTime} =
     singleTourisSport;
