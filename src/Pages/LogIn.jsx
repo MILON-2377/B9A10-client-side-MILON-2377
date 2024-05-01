@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import useAuthProvider from "../AuthProvider/useAuthProvider";
-import { Link, Navigate, useLocation } from "react-router-dom";
+import { Link, Navigate, useLocation, } from "react-router-dom";
 import { signInWithPopup } from "firebase/auth";
 import { GoogleAuthProvider } from "firebase/auth";
 import auth from "../Firebase/firebase.config";
@@ -25,11 +25,9 @@ const LogIn = () => {
       .then(() => {
         // console.log(res.user);
         reset();
-        <Navigate t={`${location}`}></Navigate>
+        <Navigate t={`${location}`}></Navigate>;
       })
-      .catch(() => {
-
-      });
+      .catch(() => {});
   };
 
   // login with social media
@@ -40,8 +38,7 @@ const LogIn = () => {
   const googleLogin = () => {
     signInWithPopup(auth, googleProvider)
       .then(() => {
-        // console.log(res.user);
-        <Navigate t={`${location}`}></Navigate>
+        <Navigate to={`${location.pathname}`}></Navigate>
       })
       .catch(() => {
         // console.log(error.message);
@@ -51,13 +48,13 @@ const LogIn = () => {
   // github login
   const handlerGitHubLogIn = () => {
     signInWithPopup(auth, githubProvider)
-    .then(() => {
-      <Navigate t={`${location}`}></Navigate>
-    })
-    .catch(() => {
-      // console.log(error.message)
-    })
-  }
+      .then(() => {
+        <Navigate t={`${location}`}></Navigate>;
+      })
+      .catch(() => {
+        // console.log(error.message)
+      });
+  };
 
   return (
     <div className="hero min-h-screen bg-base-200">
@@ -124,27 +121,27 @@ const LogIn = () => {
             </div>
           </form>
           <div className="flex flex-col mb-4 -mt-3 gap-3">
-          <div className="flex flex-col gap-4 items-center px-[32px]">
-            <button onClick={googleLogin} className="btn flex w-full">
-              <FaGoogle className="text-xl"></FaGoogle>
-              <span className="text-xl">Google</span>
-            </button>
-          </div>
-          <div className="flex flex-col gap-4 items-center px-[32px]">
-            <button onClick={handlerGitHubLogIn} className="btn flex w-full">
-              <FaGithub className="text-xl"></FaGithub>
-              <span className="text-xl">Github</span>
-            </button>
-          </div>
-          <div className=" px-[32px] text-[16px] gap-2 flex">
-            <p>Do not have an account?</p>
-            <Link
-              className="font-sans hover:text-blue-500 hover:underline "
-              to="/registeruser"
-            >
-              Register
-            </Link>
-          </div>
+            <div className="flex flex-col gap-4 items-center px-[32px]">
+              <button onClick={googleLogin} className="btn flex w-full">
+                <FaGoogle className="text-xl"></FaGoogle>
+                <span className="text-xl">Google</span>
+              </button>
+            </div>
+            <div className="flex flex-col gap-4 items-center px-[32px]">
+              <button onClick={handlerGitHubLogIn} className="btn flex w-full">
+                <FaGithub className="text-xl"></FaGithub>
+                <span className="text-xl">Github</span>
+              </button>
+            </div>
+            <div className=" px-[32px] text-[16px] gap-2 flex">
+              <p>Do not have an account?</p>
+              <Link
+                className="font-sans hover:text-blue-500 hover:underline "
+                to="/registeruser"
+              >
+                Register
+              </Link>
+            </div>
           </div>
         </div>
       </div>

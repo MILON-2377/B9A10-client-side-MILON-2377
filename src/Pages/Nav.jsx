@@ -1,7 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import useAuthProvider from "../AuthProvider/useAuthProvider";
 import UserMenu from "../components/UserMenu";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Nav = () => {
   const { users, isProfileClicked, setProfileClicked } = useAuthProvider();
@@ -96,7 +96,7 @@ const Nav = () => {
     </>
   );
 
-  // console.log(users);
+ 
 
   return (
     <div className="navbar w-[95%] lg:w-[70%] mx-auto bg-base-100">
