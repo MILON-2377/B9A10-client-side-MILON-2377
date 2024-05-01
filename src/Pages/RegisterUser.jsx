@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useLocation } from "react-router-dom";
 import useAuthProvider from "../AuthProvider/useAuthProvider";
 import Swal from "sweetalert2";
 
@@ -12,6 +12,7 @@ const RegisterUser = () => {
   } = useForm();
 
   const { createUser } = useAuthProvider();
+  const location = useLocation();
 
   const handlerUserRegisrter = ({ email, password, name }) => {
     const user = {email, name}
@@ -34,6 +35,7 @@ const RegisterUser = () => {
               text: "Your account created succssfully",
               icon: "question",
             });
+            <Navigate to={`${location}`}></Navigate>
           });
       })
       .catch((error) => {

@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import useAuthProvider from "../AuthProvider/useAuthProvider";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useLocation } from "react-router-dom";
 import { signInWithPopup } from "firebase/auth";
 import { GoogleAuthProvider } from "firebase/auth";
 import auth from "../Firebase/firebase.config";
@@ -17,15 +17,19 @@ const LogIn = () => {
   } = useForm();
 
   const { logInUser } = useAuthProvider();
+  const location = useLocation();
 
   // login with email and password
   const handlerLogInUser = ({ email, password }) => {
     logInUser(email, password)
-      .then((res) => {
-        console.log(res.user);
+      .then(() => {
+        // console.log(res.user);
         reset();
+        <Navigate t={`${location}`}></Navigate>
       })
-      .catch((error) => console.log(error.message));
+      .catch(() => {
+
+      });
   };
 
   // login with social media
@@ -35,22 +39,23 @@ const LogIn = () => {
   // google log in
   const googleLogin = () => {
     signInWithPopup(auth, googleProvider)
-      .then((res) => {
-        console.log(res.user);
+      .then(() => {
+        // console.log(res.user);
+        <Navigate t={`${location}`}></Navigate>
       })
-      .catch((error) => {
-        console.log(error.message);
+      .catch(() => {
+        // console.log(error.message);
       });
   };
 
   // github login
   const handlerGitHubLogIn = () => {
     signInWithPopup(auth, githubProvider)
-    .then(res => {
-      console.log(res.user)
+    .then(() => {
+      <Navigate t={`${location}`}></Navigate>
     })
-    .catch(error => {
-      console.log(error.message)
+    .catch(() => {
+      // console.log(error.message)
     })
   }
 
