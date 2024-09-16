@@ -10,7 +10,7 @@ const AddCountries = () => {
 
     const countrisData = { image, countryName, description };
 
-    fetch("https://b9a10-server-side-milon-2377-beryl.vercel.app/countries", {
+    fetch("https://b9a10-server-side-milon-2377-gold.vercel.app/countries", {
       method: "post",
       headers: {
         "content-type" : "application/json"

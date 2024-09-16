@@ -10,7 +10,7 @@ const Update = () => {
   const idWithoutColon = id.substring(1);
 
   useEffect(() => {
-    fetch(`https://b9a10-server-side-milon-2377-beryl.vercel.app/spots/${idWithoutColon}`)
+    fetch(`https://b9a10-server-side-milon-2377-gold.vercel.app/spots/${idWithoutColon}`)
       .then((res) => res.json())
       .then((data) => {
         setUpdateData(data);
@@ -18,7 +18,7 @@ const Update = () => {
   }, [idWithoutColon]);
 
   const handlerAddTourisSpot = (data) => {
-    fetch(`https://b9a10-server-side-milon-2377-beryl.vercel.app/spots/${idWithoutColon}`, {
+    fetch(`https://b9a10-server-side-milon-2377-gold.vercel.app/spots/${idWithoutColon}`, {
         method: "put",
         headers: {
             "content-type" : "application/json",

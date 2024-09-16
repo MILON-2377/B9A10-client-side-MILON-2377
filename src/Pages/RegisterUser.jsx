@@ -20,7 +20,7 @@ const RegisterUser = () => {
       .then((res) => {
         console.log(res.user);
         reset();
-        fetch("https://b9a10-server-side-milon-2377-beryl.vercel.app/users", {
+        fetch("https://b9a10-server-side-milon-2377-gold.vercel.app/users", {
           method: "post",
           headers: {
             "content-type": "application/json"

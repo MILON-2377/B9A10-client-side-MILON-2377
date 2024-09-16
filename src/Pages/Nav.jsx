@@ -1,7 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import useAuthProvider from "../AuthProvider/useAuthProvider";
 import UserMenu from "../components/UserMenu";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const Nav = () => {
   const { users, isProfileClicked, setProfileClicked } = useAuthProvider();

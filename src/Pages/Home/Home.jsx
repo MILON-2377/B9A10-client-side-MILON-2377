@@ -1,10 +1,21 @@
-import { useLoaderData } from "react-router-dom";
+
 import Banner from "./Banner";
 import AllCountries from "./AllCountries";
+import { useQuery } from '@tanstack/react-query';
 
 const Home = () => {
-  const countriesData = useLoaderData();
+  // const countriesData = useLoaderData();
   // console.log(countriesData);
+  // https://b9a10-server-side-milon-2377-gold.vercel.app/countries
+
+  const {data: countriesData} = useQuery({
+    queryKey: ["countriesData"],
+    queryFn: async () => {
+      const res = await fetch("http://localhost:3000/countries");
+      return res;
+    }
+  })
+    
 
   return (
     <div>
@@ -27,7 +38,7 @@ const Home = () => {
         </div>
         <div className="w-5/6 mx-auto mb-12 -mt-20  rounded-lg shadow-md lg:-mt-40">
           <div className="grid grid-cols-2 lg:grid-cols-3 w-[90%] mt-[30px] mx-auto lg:mt-[40px] gap-4 p-6 ">
-            {countriesData.map((country) => (
+            {countriesData?.map((country) => (
               <AllCountries
                 key={country._id}
                 countries={country}

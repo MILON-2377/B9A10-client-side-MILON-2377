@@ -4,7 +4,7 @@ import { useState } from "react";
 
 const AllTouristSports = () => {
   const bdTouristSports = useLoaderData();
-  console.log(bdTouristSports);
+  // console.log(bdTouristSports);
   const [alldata, setAlldata] = useState(bdTouristSports);
   const [search, setSearch] = useState(null);
   const hanlderCostSearch = (id) => {

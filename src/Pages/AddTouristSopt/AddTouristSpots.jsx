@@ -8,7 +8,7 @@ const AddTouristSpots = () => {
     const {register, handleSubmit, reset}  = useForm();
     
     const handlerAddTourisSpot = (data) => {
-        fetch("https://b9a10-server-side-milon-2377-beryl.vercel.app/spots", {
+        fetch("hhttps://b9a10-server-side-milon-2377-gold.vercel.app/spots", {
             method: "post",
             headers: {
                 "content-type" : "application/json"
@@ -16,7 +16,7 @@ const AddTouristSpots = () => {
             body: JSON.stringify({...data})
         })
         .then(res => res.json())
-        .then(data => {
+        .then(() => {
             toast("Your data has been successfully stored in Mongodb database!!")
             reset();
         })
